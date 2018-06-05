@@ -1,0 +1,20 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>History</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item
+            *ngFor="let item of aHistorial; let i = index" 
+            (click)="fnAbrirUrl(i)">
+            {{item.info}}
+            <p>{{item.type}}</p>
+    </button>
+
+  </ion-list>
+</ion-content>
