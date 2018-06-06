@@ -29,6 +29,9 @@ export class HomePage {
     //Valida que la plataforma en que se esta ejecutando la App NO sea un navegador web
     if(!this.platform.is('cordova')){
       //this.historyProvider.fnAdicionarHistorial("http://oscarrl.xyz");
+      //this.historyProvider.fnAdicionarHistorial("geo:9.976133040865312,-84.00677479055173");
+      //this.historyProvider.fnAdicionarHistorial("geo:6.348801,-75.515567");
+      this.historyProvider.fnAdicionarHistorial("geo:6.349033,-75.503885");
       this.presentToast('Imposible, estas en un navegador.');
       return;
     }

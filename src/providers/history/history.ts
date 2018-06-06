@@ -1,14 +1,30 @@
 import { Injectable } from '@angular/core';
 import { ScanData } from '../../models/scan-data.model'
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { ModalController } from 'ionic-angular';
+import { MapsPage } from '../../pages/index.page';
 
 @Injectable()
 export class HistoryProvider {
 
-  private _aHistory:ScanData[] = [];  //Almacena todos los codigos QR leidos
+  private _aHistory:ScanData[] = [
+    {
+      type: "geo",
+      info: "geo:6.348799,-75.515527"
+    },
+    {
+      type: "geo",
+      info: "geo:6.338733,-75.521818"
+    },
+    {
+      type: "geo",
+      info: "geo:6.349033,-75.503885"
+    }
+  ];  //Almacena todos los codigos QR leidos
 
   constructor(
-    private iab: InAppBrowser
+    private iab: InAppBrowser,
+    private modalCtrl: ModalController
   ) {
     console.log('Hello HistoryProvider Provider');
   }
@@ -42,9 +58,13 @@ export class HistoryProvider {
         //Abre el navegador predeterminado en el dispositivo y abre el link indicado
         this.iab.create(ScanData.info, '_system');
         break;
-    
+      case "geo":
+        //Abre la pagina de mapas y se posiciona en la LON y LAT correspondiente
+        this.modalCtrl.create(MapsPage, { xy: ScanData.info })
+          .present();
+        break;
       default:
-        console.log('Error al abrirl link.');
+        console.log('Error al abrir link.');
         break;
     }
   }

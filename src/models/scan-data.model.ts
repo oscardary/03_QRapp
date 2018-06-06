@@ -9,6 +9,9 @@ export class ScanData {
 
         if( typeFile.startsWith("http") ){
             this.type = "http";
+        } 
+        else if (typeFile.startsWith("geo") ){
+            this.type = "geo";
         }
     }
 }
